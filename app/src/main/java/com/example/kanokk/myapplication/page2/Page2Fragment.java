@@ -1,10 +1,8 @@
 package com.example.kanokk.myapplication.page2;
 
-import android.content.Context;
-import android.net.Uri;
-import android.os.Bundle;
 import android.app.Fragment;
-import android.os.Parcelable;
+import android.content.Context;
+import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,13 +12,19 @@ import android.widget.TextView;
 import com.example.kanokk.myapplication.R;
 import com.example.kanokk.myapplication.model.BookModel;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.Unbinder;
+
 public class Page2Fragment extends Fragment implements Page2Contract.View {
     private static final String ARG_PARAM1 = "param1";
+    @BindView(R.id.txt1)
+    TextView txt1;
+    @BindView(R.id.txt2)
+    TextView txt2;
+    Unbinder unbinder;
 
     private BookModel mParam1;
-    TextView txt1;
-    TextView txt2;
-
 
     Page2Presenter presenter = new Page2Presenter();
 
@@ -47,15 +51,14 @@ public class Page2Fragment extends Fragment implements Page2Contract.View {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_page2, container, false);
+        View view = inflater.inflate(R.layout.fragment_page2, container, false);
+        unbinder = ButterKnife.bind(this, view);
+        return view;
     }
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        txt1 = view.findViewById(R.id.txt1);
-        txt2 = view.findViewById(R.id.txt2);
-
         presenter.addview(this);
         presenter.prepareData(mParam1);
     }
@@ -74,5 +77,11 @@ public class Page2Fragment extends Fragment implements Page2Contract.View {
     public void ShowData(BookModel model) {
         txt1.setText(model.getId());
         txt2.setText(model.getTitle());
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        unbinder.unbind();
     }
 }

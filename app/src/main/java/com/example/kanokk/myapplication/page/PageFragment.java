@@ -1,9 +1,8 @@
 package com.example.kanokk.myapplication.page;
 
-import android.content.Context;
-import android.net.sip.SipSession;
-import android.os.Bundle;
 import android.app.Fragment;
+import android.content.Context;
+import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -11,23 +10,33 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
-import com.example.kanokk.myapplication.MainActivity;
 import com.example.kanokk.myapplication.R;
 import com.example.kanokk.myapplication.model.BookModel;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
+import butterknife.Unbinder;
 
 public class PageFragment extends Fragment implements PageContract.View {
     private static final String ARG_PARAM1 = "param1";
 
     PagePresenter presenter = new PagePresenter();
 
-    Button btn;
-
     Listener listener;
+    @BindView(R.id.click_btn)
+    Button clickBtn;
+    Unbinder unbinder;
 
-    public interface Listener{
-        void onNextPage(BookModel model);
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        unbinder.unbind();
     }
 
+    public interface Listener {
+        void onNextPage(BookModel model);
+    }
 
     private String mParam1;
 
@@ -54,27 +63,21 @@ public class PageFragment extends Fragment implements PageContract.View {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_page, container, false);
+        View view = inflater.inflate(R.layout.fragment_page, container, false);
+        unbinder = ButterKnife.bind(this, view);
+        return view;
     }
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         presenter.addview(this);
-
-        btn = view.findViewById(R.id.click_btn);
-        btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                presenter.prepareData();
-            }
-        });
     }
 
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-            listener = (Listener) context;
+        listener = (Listener) context;
     }
 
     @Override
@@ -84,11 +87,16 @@ public class PageFragment extends Fragment implements PageContract.View {
 
     @Override
     public void setMessageBody(String body) {
-        Log.d("Book :",body);
+        Log.d("Book :", body);
     }
 
     @Override
     public void onNextPage(BookModel model) {
         listener.onNextPage(model);
+    }
+
+    @OnClick(R.id.click_btn)
+    public void  Click(){
+        presenter.prepareData();
     }
 }
