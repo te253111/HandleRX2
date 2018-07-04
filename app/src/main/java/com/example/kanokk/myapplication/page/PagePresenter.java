@@ -28,6 +28,16 @@ public class PagePresenter implements PageContract.Presenter{
         this.view = view;
     }
 
+    @Override
+    public void onPause() {
+
+    }
+
+    @Override
+    public void onResume() {
+
+    }
+
     private class Bookobserver extends CallbackWrapper<BookModel> {
         @Override
         public void onNext(BookModel bookModel) {

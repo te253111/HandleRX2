@@ -15,4 +15,14 @@ public class Page2Presenter implements Page2Contract.Presenter {
     public void addview(Page2Contract.View view) {
         this.view = view;
     }
+
+    @Override
+    public void onPause() {
+
+    }
+
+    @Override
+    public void onResume() {
+
+    }
 }

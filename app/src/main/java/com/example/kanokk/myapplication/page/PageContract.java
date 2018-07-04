@@ -1,5 +1,6 @@
 package com.example.kanokk.myapplication.page;
 
+import com.example.kanokk.myapplication.Base.BaseView;
 import com.example.kanokk.myapplication.model.BookModel;
 
 public interface PageContract {
@@ -8,8 +9,7 @@ public interface PageContract {
         void onNextPage(BookModel model);
     }
 
-    interface Presenter {
+    interface Presenter extends BaseView<PageContract.View> {
         void prepareData();
-        void addview(View view);
     }
 }
