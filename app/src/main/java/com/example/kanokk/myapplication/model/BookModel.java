@@ -1,10 +1,32 @@
 package com.example.kanokk.myapplication.model;
 
-public class BookModel {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+public class BookModel implements Parcelable {
     private String userId;
     private String id;
     private String title;
     private String body;
+
+    protected BookModel(Parcel in) {
+        userId = in.readString();
+        id = in.readString();
+        title = in.readString();
+        body = in.readString();
+    }
+
+    public static final Creator<BookModel> CREATOR = new Creator<BookModel>() {
+        @Override
+        public BookModel createFromParcel(Parcel in) {
+            return new BookModel(in);
+        }
+
+        @Override
+        public BookModel[] newArray(int size) {
+            return new BookModel[size];
+        }
+    };
 
     public String getUserId() {
         return userId;
@@ -36,5 +58,18 @@ public class BookModel {
 
     public void setBody(String body) {
         this.body = body;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeString(userId);
+        parcel.writeString(id);
+        parcel.writeString(title);
+        parcel.writeString(body);
     }
 }

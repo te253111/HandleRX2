@@ -33,6 +33,7 @@ public class PagePresenter implements PageContract.Presenter{
         public void onNext(BookModel bookModel) {
             Log.d("Book :",bookModel.getId());
             Log.d("Book : title",bookModel.getTitle());
+            view.onNextPage(bookModel);
         }
 
         @Override

@@ -3,19 +3,22 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".page.PageFragment">
+    tools:context=".page2.Page2Fragment">
 
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <Button
-            android:id="@+id/click_btn"
-            android:text="click"
-            android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/txt1"
+            android:text="Id"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content" />
-
+        <TextView
+            android:id="@+id/txt2"
+            android:text="title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
     </LinearLayout>
 
 </FrameLayout>

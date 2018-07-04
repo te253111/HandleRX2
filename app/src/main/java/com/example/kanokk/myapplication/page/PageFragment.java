@@ -1,6 +1,7 @@
 package com.example.kanokk.myapplication.page;
 
 import android.content.Context;
+import android.net.sip.SipSession;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.support.annotation.Nullable;
@@ -10,7 +11,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import com.example.kanokk.myapplication.MainActivity;
 import com.example.kanokk.myapplication.R;
+import com.example.kanokk.myapplication.model.BookModel;
 
 public class PageFragment extends Fragment implements PageContract.View {
     private static final String ARG_PARAM1 = "param1";
@@ -18,6 +21,13 @@ public class PageFragment extends Fragment implements PageContract.View {
     PagePresenter presenter = new PagePresenter();
 
     Button btn;
+
+    Listener listener;
+
+    public interface Listener{
+        void onNextPage(BookModel model);
+    }
+
 
     private String mParam1;
 
@@ -64,6 +74,7 @@ public class PageFragment extends Fragment implements PageContract.View {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
+            listener = (Listener) context;
     }
 
     @Override
@@ -74,5 +85,10 @@ public class PageFragment extends Fragment implements PageContract.View {
     @Override
     public void setMessageBody(String body) {
         Log.d("Book :",body);
+    }
+
+    @Override
+    public void onNextPage(BookModel model) {
+        listener.onNextPage(model);
     }
 }
