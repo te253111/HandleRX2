@@ -14,6 +14,6 @@ public interface Jsonservice {
     @GET("posts/{id}")
     Observable<BookModel> getBooks(@Path("id") String id);
 
-    @GET("pos/{id}")
-    Observable<BookModel> getBookws(@Path("id") String id);
+    @GET("posts")
+    Observable<List<BookModel>> getAllBooks();
 }

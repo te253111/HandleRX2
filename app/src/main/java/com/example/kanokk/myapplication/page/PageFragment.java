@@ -24,9 +24,11 @@ public class PageFragment extends Fragment implements PageContract.View {
     PagePresenter presenter = new PagePresenter();
 
     Listener listener;
-    @BindView(R.id.click_btn)
-    Button clickBtn;
     Unbinder unbinder;
+    @BindView(R.id.click_one_btn)
+    Button clickOneBtn;
+    @BindView(R.id.click_all_btn)
+    Button clickAllBtn;
 
     @Override
     public void onDestroyView() {
@@ -36,6 +38,7 @@ public class PageFragment extends Fragment implements PageContract.View {
 
     public interface Listener {
         void onNextPage(BookModel model);
+        void onAllDataPage();
     }
 
     private String mParam1;
@@ -95,8 +98,13 @@ public class PageFragment extends Fragment implements PageContract.View {
         listener.onNextPage(model);
     }
 
-    @OnClick(R.id.click_btn)
-    public void  Click(){
+    @OnClick(R.id.click_one_btn)
+    public void Click_one() {
         presenter.prepareData();
+    }
+
+    @OnClick(R.id.click_all_btn)
+    public void Click_all() {
+        listener.onAllDataPage();
     }
 }

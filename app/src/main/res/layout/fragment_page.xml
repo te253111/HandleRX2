@@ -11,8 +11,13 @@
         android:layout_height="match_parent">
 
         <Button
-            android:id="@+id/click_btn"
-            android:text="click"
+            android:id="@+id/click_one_btn"
+            android:text="click one data"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <Button
+            android:id="@+id/click_all_btn"
+            android:text="click all data"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 

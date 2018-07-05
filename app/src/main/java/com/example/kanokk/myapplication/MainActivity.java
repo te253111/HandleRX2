@@ -12,6 +12,7 @@ import com.example.kanokk.myapplication.Handling.CallbackWrapper;
 import com.example.kanokk.myapplication.model.BookModel;
 import com.example.kanokk.myapplication.page.PageFragment;
 import com.example.kanokk.myapplication.page2.Page2Fragment;
+import com.example.kanokk.myapplication.pagealldata.AllDataFragment;
 
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -40,6 +41,14 @@ public class MainActivity extends AppCompatActivity implements PageFragment.List
         Page2Fragment twoFragment = Page2Fragment.newInstance(model);
         getFragmentManager().beginTransaction()
                 .replace(R.id.fragment_container, twoFragment)
+                .commit();
+    }
+
+    @Override
+    public void onAllDataPage() {
+        AllDataFragment allFragment = AllDataFragment.newInstance();
+        getFragmentManager().beginTransaction()
+                .replace(R.id.fragment_container, allFragment)
                 .commit();
     }
 }
