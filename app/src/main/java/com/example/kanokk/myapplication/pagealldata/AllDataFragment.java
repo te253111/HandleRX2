@@ -69,6 +69,9 @@ public class AllDataFragment extends Fragment implements AllDataContract.View {
         recyclerView =  view.findViewById(R.id.recyclerView);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        mAdapter = new MyAdapter(null);
+        recyclerView.setAdapter(mAdapter);
+
         presenter.addview(this);
         presenter.prepareData();
     }

@@ -19,6 +19,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
 
     private List<BookModel> modelList;
 
+
     public MyAdapter(List<BookModel> data){
         modelList = data;
     }
@@ -46,12 +47,18 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.id.setText(modelList.get(position).getId());
-        holder.test.setText(modelList.get(position).getTitle());
+        if(modelList!=null) {
+            holder.id.setText(modelList.get(position).getId());
+            holder.test.setText(modelList.get(position).getTitle());
+        }
     }
 
     @Override
     public int getItemCount() {
-        return modelList.size();
+        if(modelList!=null){
+            return modelList.size();
+        }else{
+            return  0;
+        }
     }
 }
